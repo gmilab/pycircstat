@@ -27,10 +27,5 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          pytest --cov=your_package_name --cov-report=xml
+          pytest --cov=pycircstat
 
-      - name: Upload coverage report
-        uses: actions/upload-artifact@v3
-        with:
-          name: coverage-report
-          path: coverage.xml
