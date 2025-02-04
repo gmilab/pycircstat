@@ -280,8 +280,8 @@ def test_mean_ci_2d():
                     [1.07677, 1.49836],
                     [2.96969, 1.51748],
                     ])
-    muplus = np.array([np.NaN, 2.7003])
-    muminus = np.array([np.NaN, 0.89931])
+    muplus = np.array([np.nan, 2.7003])
+    muminus = np.array([np.nan, 0.89931])
     mu = np.array([1.6537, 1.7998])
 
     try:

@@ -66,7 +66,7 @@ def vector_strength_spectrum(event_times, sampling_rate, time=None):
     x = convolve_dirac_gauss(t, event_times, sigma=sigma)
 
     a = np.abs(np.fft.fft(x)) * dt / len(event_times)
-    a[w == 0] = np.NaN
+    a[w == 0] = np.nan
     gf = np.exp(-2 * np.pi**2 * sigma**2 * w**2)
     return w, a / gf
 

@@ -265,7 +265,7 @@ def mean_ci_limits(alpha, ci=0.95, w=None, d=None, axis=None):
     R = n * r
     c2 = stats.chi2.ppf(ci, df=1)
 
-    t = np.NaN * np.empty_like(r)
+    t = np.nan * np.empty_like(r)
 
     idx = (r < .9) & (r > np.sqrt(c2 / 2 / n))
     t[idx] = np.sqrt((2 * n[idx] * (2 * R[idx] ** 2 - n[idx] * c2))

@@ -28,7 +28,7 @@ class AggCluster1D(object):
 
 
         while nu > self.numclust:
-            mu = np.asarray([descr.mean(alpha[cid == j]) if j in cid else np.Inf for j in range(n)])
+            mu = np.asarray([descr.mean(alpha[cid == j]) if j in cid else np.inf for j in range(n)])
             D = np.abs(descr.pairwise_cdiff(mu))
             idx = np.triu_indices(n,1)
             min = np.nanargmin(D[idx])

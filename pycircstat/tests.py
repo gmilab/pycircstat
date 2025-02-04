@@ -431,17 +431,17 @@ def watson_williams(*args, **kwargs):
             T[idx] = pd.DataFrame({'Source': ['Columns', 'Residual', 'Total'],
                                    'df': [k - 1, n[idx] - k, n[idx] - 1],
                                    'SS': [A[idx], B[idx], A[idx] + B[idx]],
-                                   'MS': [A[idx] / (k - 1), B[idx] / (n[idx] - k), np.NaN],
-                                   'F': [F[idx], np.NaN, np.NaN],
-                                   'p-value': [p, np.NaN, np.NaN]}).set_index('Source')
+                                   'MS': [A[idx] / (k - 1), B[idx] / (n[idx] - k), np.nan],
+                                   'F': [F[idx], np.nan, np.nan],
+                                   'p-value': [p, np.nan, np.nan]}).set_index('Source')
 
     else:
         T = pd.DataFrame({'Source': ['Columns', 'Residual', 'Total'],
                           'df': [k - 1, n - k, n - 1],
                           'SS': [A, B, A + B],
-                          'MS': [A / (k - 1), B / (n - k), np.NaN],
-                          'F': [F, np.NaN, np.NaN],
-                          'p-value': [pval, np.NaN, np.NaN]}).set_index('Source')
+                          'MS': [A / (k - 1), B / (n - k), np.nan],
+                          'F': [F, np.nan, np.nan],
+                          'p-value': [pval, np.nan, np.nan]}).set_index('Source')
 
     return pval, T
 
@@ -731,7 +731,7 @@ def hktest(alpha, idp, idq, inter=True, fn=None):
 
             # interaction test statistic
             FI = None
-            pI = np.NaN
+            pI = np.nan
             beta = 1
 
 
@@ -768,9 +768,9 @@ def hktest(alpha, idp, idq, inter=True, fn=None):
             'Source': fn + ['Interaction', 'Residual', 'Total'],
             'DoF': [df_1, df_2, df_i, df_r, df_t],
             'SS': [eff_1, eff_2, eff_i, eff_r, eff_t],
-            'MS': [ms_1, ms_2, ms_i, ms_r, np.NaN],
-            'F': [F1.squeeze(), F2.squeeze(), FI, np.NaN, np.NaN],
-            'p': list(pval) + [np.NaN, np.NaN]
+            'MS': [ms_1, ms_2, ms_i, ms_r, np.nan],
+            'F': [F1.squeeze(), F2.squeeze(), FI, np.nan, np.nan],
+            'p': list(pval) + [np.nan, np.nan]
         })
         table = table.set_index('Source')
     else:
