@@ -4,7 +4,6 @@ import warnings
 import numpy as np
 
 from numpy.testing import assert_allclose
-from nose.tools import assert_equal, assert_true
 
 import pycircstat
 from pycircstat.tests import _sample_cdf
@@ -24,7 +23,7 @@ def test_rayleigh():
 def test_rayleightest2():
     data = np.random.rand(10, 20, 5) * np.pi * 2.
     p, z = pycircstat.tests.rayleigh(data, axis=0)
-    assert_true(p.shape == (20, 5))
+    assert p.shape == (20, 5)
     for i in range(data.shape[1]):
         for j in range(data.shape[2]):
             p2, z2 = pycircstat.tests.rayleigh(data[:, i, j])
@@ -35,7 +34,7 @@ def test_rayleightest2():
 def test_rayleightest3():
     data = np.random.rand(10, 20, 5) * np.pi * 2.
     p, z = pycircstat.tests.rayleigh(data, axis=1)
-    assert_true(p.shape == (10, 5))
+    assert p.shape == (10, 5)
     for i in range(data.shape[0]):
         for j in range(data.shape[2]):
             p2, z2 = pycircstat.tests.rayleigh(data[i, :, j])
@@ -51,14 +50,14 @@ def test_omnibus():
         0.20612467, 1.38484181, 1.72546928, 3.33570062, 3.96191276])
     p, m = pycircstat.tests.omnibus(data)
     assert_allclose(0.295715, p, atol=0.001, rtol=0.001)
-    assert_equal(5, m)
+    assert 5 == m
 
 
 def test_omnibus2():
     data = np.random.rand(10, 20, 5) * np.pi * 2.
     p, m = pycircstat.tests.omnibus(data, axis=0)
-    assert_true(p.shape == (20, 5))
-    assert_true(m.shape == (20, 5))
+    assert p.shape == (20, 5)
+    assert m.shape == (20, 5)
     for i in range(data.shape[1]):
         for j in range(data.shape[2]):
             p2, m2 = pycircstat.tests.omnibus(data[:, i, j])
@@ -69,8 +68,8 @@ def test_omnibus2():
 def test_omnibus3():
     data = np.random.rand(10, 20, 5) * np.pi * 2.
     p, m = pycircstat.tests.omnibus(data, axis=1)
-    assert_true(p.shape == (10, 5))
-    assert_true(m.shape == (10, 5))
+    assert p.shape == (10, 5)
+    assert m.shape == (10, 5)
     for i in range(data.shape[0]):
         for j in range(data.shape[2]):
             p2, m2 = pycircstat.tests.omnibus(data[i, :, j])
@@ -93,9 +92,9 @@ def test_raospacing():
 def test_raospacing2():
     data = np.random.rand(10, 20, 5) * np.pi * 2.
     p, U, Uc = pycircstat.tests.raospacing(data, axis=0)
-    assert_true(p.shape == (20, 5))
-    assert_true(U.shape == (20, 5))
-    assert_true(Uc.shape == (20, 5))
+    assert p.shape == (20, 5)
+    assert U.shape == (20, 5)
+    assert Uc.shape == (20, 5)
     for i in range(data.shape[1]):
         for j in range(data.shape[2]):
             p2, U2, Uc2 = pycircstat.tests.raospacing(data[:, i, j])
@@ -107,9 +106,9 @@ def test_raospacing2():
 def test_raospacing3():
     data = np.random.rand(10, 20, 5) * np.pi * 2.
     p, U, Uc = pycircstat.tests.raospacing(data, axis=1)
-    assert_true(p.shape == (10, 5))
-    assert_true(U.shape == (10, 5))
-    assert_true(Uc.shape == (10, 5))
+    assert p.shape == (10, 5)
+    assert U.shape == (10, 5)
+    assert Uc.shape == (10, 5)
     for i in range(data.shape[0]):
         for j in range(data.shape[2]):
             p2, U2, Uc2 = pycircstat.tests.raospacing(data[i, :, j])
@@ -132,7 +131,7 @@ def test_vtest():
 def test_vtest2():
     data = np.random.rand(10, 20, 5) * np.pi * 2.
     p, V = pycircstat.tests.vtest(data, 0, axis=0)
-    assert_true(p.shape == (20, 5))
+    assert p.shape == (20, 5)
     for i in range(data.shape[1]):
         for j in range(data.shape[2]):
             p2, V2 = pycircstat.tests.vtest(data[:, i, j], 0)
@@ -143,7 +142,7 @@ def test_vtest2():
 def test_vtest3():
     data = np.random.rand(10, 20, 5) * np.pi * 2.
     p, V = pycircstat.tests.vtest(data, 0, axis=1)
-    assert_true(p.shape == (10, 5))
+    assert p.shape == (10, 5)
     for i in range(data.shape[0]):
         for j in range(data.shape[2]):
             p2, V2 = pycircstat.tests.vtest(data[i, :, j], 0)
@@ -164,23 +163,23 @@ def test_symtest():
 def test_symtest2():
     data = np.random.rand(10, 20, 5) * np.pi * 2.
     p, T = pycircstat.tests.symtest(data, axis=0)
-    assert_true(p.shape == (20, 5))
+    assert p.shape == (20, 5)
     for i in range(data.shape[1]):
         for j in range(data.shape[2]):
             p2, T2 = pycircstat.tests.symtest(data[:, i, j])
-            assert_equal(p[i, j], p2)
-            assert_equal(T[i, j], T2)
+            assert p[i, j] == p2
+            assert T[i, j] == T2
 
 
 def test_symtest3():
     data = np.random.rand(10, 20, 5) * np.pi * 2.
     p, T = pycircstat.tests.symtest(data, axis=1)
-    assert_true(p.shape == (10, 5))
+    assert p.shape == (10, 5)
     for i in range(data.shape[0]):
         for j in range(data.shape[2]):
             p2, T2 = pycircstat.tests.symtest(data[i, :, j])
-            assert_equal(p[i, j], p2)
-            assert_equal(T[i, j], T2)
+            assert p[i, j] == p2
+            assert T[i, j] == T2
 
 
 def test_watson_williams():
@@ -196,11 +195,9 @@ def test_watson_williams_nd():
     dat2 = np.tile(np.radians([150, 130, 175, 190, 180, 220]), (3, 4, 1))
     dat3 = np.tile(np.radians([140, 165, 185, 180, 125, 175, 140]), (3, 4, 1))
     p, T = pycircstat.watson_williams(dat1, dat2, dat3, axis=2)
-    assert_true(
-        p.shape == (
+    assert p.shape == (
             3,
-            4),
-        "return pvalue array does not have right shape")
+            4), "return pvalue array does not have right shape"
     assert_allclose(p, 0.1870637, atol=0.0001, rtol=0.0001)
 
 
@@ -341,15 +338,15 @@ def test_kuiper2():
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
         p, k = pycircstat.tests.kuiper(data1, data2, axis=0)
-        assert_true(p.shape == (20, 30))
+        assert p.shape == (20, 30)
         for i in range(data1.shape[1]):
             for j in range(data1.shape[2]):
                 p2, k2 = pycircstat.tests.kuiper(
                     data1[
                         :, i, j], data2[
                         :, i, j])
-                assert_equal(p[i, j], p2)
-                assert_equal(k[i, j], k2)
+                assert p[i, j] == p2
+                assert k[i, j] == k2
 
 
 def test_kuiper3():
@@ -358,15 +355,15 @@ def test_kuiper3():
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
         p, k = pycircstat.tests.kuiper(data1, data2, axis=1)
-        assert_true(p.shape == (15, 30))
+        assert p.shape == (15, 30)
         for i in range(data1.shape[0]):
             for j in range(data1.shape[2]):
                 p2, k2 = pycircstat.tests.kuiper(
                     data1[
                         i, :, j], data2[
                         i, :, j])
-                assert_equal(p[i, j], p2)
-                assert_equal(k[i, j], k2)
+                assert p[i, j] == p2
+                assert k[i, j] == k2
 
 
 def test_cmtest():
@@ -386,29 +383,29 @@ def test_cmtest2():
     data1 = np.random.rand(3, 2, 15) * np.pi * 2.
     data2 = np.random.rand(3, 2, 15) * np.pi * 2.
     p, P = pycircstat.tests.cmtest(data1, data2, axis=2)
-    assert_true(p.shape == (3, 2))
-    assert_true(P.shape == (3, 2))
+    assert p.shape == (3, 2)
+    assert P.shape == (3, 2)
     for i in range(data1.shape[0]):
         for j in range(data1.shape[1]):
             p2, P2 = pycircstat.tests.cmtest(
                 data1[i, j, :],
                 data2[i, j, :])
-            assert_equal(p[i, j], p2)
-            assert_equal(P[i, j], P2)
+            assert p[i, j] == p2
+            assert P[i, j] == P2
 
 def test_cmtest3():
     data1 = np.random.rand(3, 15, 2) * np.pi * 2.
     data2 = np.random.rand(3, 15, 2) * np.pi * 2.
     p, P = pycircstat.tests.cmtest(data1, data2, axis=1)
-    assert_true(p.shape == (3, 2))
-    assert_true(P.shape == (3, 2))
+    assert p.shape == (3, 2)
+    assert P.shape == (3, 2)
     for i in range(data1.shape[0]):
         for j in range(data1.shape[2]):
             p2, P2 = pycircstat.tests.cmtest(
                 data1[i, :, j],
                 data2[i, :, j])
-            assert_equal(p[i, j], p2)
-            assert_equal(P[i, j], P2)
+            assert p[i, j] == p2
+            assert P[i, j] == P2
 
 def test_mtest():
     data = np.array([
@@ -422,13 +419,13 @@ def test_mtest():
     out1 = np.array([0.76976, 0.50149])
     assert_allclose(pycircstat.mean_ci_limits(data, ci=0.8, axis=0),
                     out1, rtol=1e-4)
-    assert_true(np.all(h == [False, True]))
+    assert np.all(h == [False, True])
 
     h, mu, ci = pycircstat.tests.mtest(data, np.pi/2., xi=.2, axis=1)
     out2 = np.array([0.17081, 0.72910, 0.10911, 0.24385, 0.95426])
     assert_allclose(pycircstat.mean_ci_limits(data, ci=0.8, axis=1),
                     out2, rtol=1e-4)
-    assert_true(np.all(h == [True, False, True, True, False]))
+    assert np.all(h == [True, False, True, True, False])
 
     out3 = np.array([1.0577, 2.4170])
     h, mu, ci = pycircstat.tests.mtest(data, np.pi/2., xi=.05, axis=None)
@@ -436,7 +433,7 @@ def test_mtest():
                     out3[1], rtol=1e-4)
     assert_allclose(mu - pycircstat.mean_ci_limits(data, ci=0.95, axis=None),
                     out3[0], rtol=1e-4)
-    assert_true(~h)
+    assert ~h
     assert_allclose(mu, 1.737335083370)
 
 
@@ -451,14 +448,14 @@ def test_medtest2():
     data1 = np.random.rand(3, 15, 2) * np.pi * 2.
 
     p = pycircstat.tests.medtest(data1, np.pi, axis=1)
-    assert_true(p.shape == (3, 2))
+    assert p.shape == (3, 2)
 
     for i in range(data1.shape[0]):
         for j in range(data1.shape[2]):
             p2 = pycircstat.tests.medtest(
                 data1[i, :, j],
                 np.pi)
-            assert_equal(p[i, j], p2)
+            assert p[i, j] == p2
 
 
 
@@ -466,7 +463,7 @@ def test_medtest3():
     data1 = np.random.rand(4, 3, 2, 15) * np.pi * 2.
 
     p = pycircstat.tests.medtest(data1, np.pi, axis=3)
-    assert_true(p.shape == (4, 3, 2))
+    assert p.shape == (4, 3, 2)
 
     for k in range(data1.shape[0]):
         for i in range(data1.shape[1]):
@@ -474,7 +471,7 @@ def test_medtest3():
                 p2 = pycircstat.tests.medtest(
                     data1[k, i,  j, :],
                     np.pi)
-                assert_equal(p[k, i, j], p2)
+                assert p[k, i, j] == p2
 
 
 def test_hktest_small_kk():

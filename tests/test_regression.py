@@ -3,7 +3,6 @@ from __future__ import absolute_import, division
 import numpy as np
 
 from numpy.testing import assert_allclose
-from nose.tools import assert_equal, assert_true
 from pycircstat.regression import CL1stOrderRegression, CCTrigonometricPolynomialRegression
 
 
@@ -49,7 +48,7 @@ def test_circlin_test():
 
     reg = CL1stOrderRegression()
     res = reg.test(alpha, x)
-    assert_true(res.loc['Liddell-Ord','p'] > 0.0001, 'p-value is smaller than 0.0001')
+    assert res.loc['Liddell-Ord','p'] > 0.0001, 'p-value is smaller than 0.0001'
 
 
 

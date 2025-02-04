@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pycircstat"
+version = "0.1.0"
+description = "Toolbox for circular statistics with Python"
+authors = [
+    { name = "Fabian Sinz" },
+    { name = "Philipp Berens", email = "philipp.berens@uni-tuebingen.de" },
+    { name = "Matthias Kuemmerer" },
+    { name = "Tom Wallis" },
+    { name = "Simeon Wong"}
+]
+keywords = ["statistics"]
+dependencies = [
+    "mock",
+    "sphinx_rtd_theme",
+    "decorator",
+    "pandas",
+    "scipy"
+]
+
+[tool.setuptools]
+packages = ["pycircstat"]
+
+[tool.setuptools.package-data]
+"pycircstat" = ["data/kuiper_table.npy"]
+
+[project.classifiers]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Topic :: Utilities"
+]

@@ -3,7 +3,6 @@ from __future__ import absolute_import
 import numpy as np
 
 from numpy.testing import assert_allclose
-from nose.tools import assert_equal, assert_true, assert_raises, raises
 
 import pycircstat
 
@@ -42,9 +41,9 @@ def test_axis_1arg():
             ret = f(data, axis=a)
 
             if a is None:
-                assert_true(isinstance(ret, np.ndarray) or np.isscalar(ret))
+                assert isinstance(ret, np.ndarray) or np.isscalar(ret)
             else:
-                assert_equal(ret.shape, data.shape[:a] + data.shape[a + 1:])
+                assert ret.shape == data.shape[:a] + data.shape[a + 1:]
 
 
 def test_axis_2arg():
@@ -53,9 +52,9 @@ def test_axis_2arg():
         for a in [None, 0, 1, 2]:
             ret = f(data, data, axis=a)
             if a is None:
-                assert_true(isinstance(ret, np.ndarray) or np.isscalar(ret))
+                assert isinstance(ret, np.ndarray) or np.isscalar(ret)
             else:
-                assert_equal(ret.shape, data.shape[:a] + data.shape[a + 1:])
+                assert ret.shape == data.shape[:a] + data.shape[a + 1:]
 
 
 @raises(ValueError)
@@ -330,7 +329,7 @@ def test_corrcc_ci():
     data1 = np.random.rand(200) * 2 * np.pi
     data2 = np.asarray(data1)
     exp = (1., pycircstat.CI(1., 1.))
-    assert_equal(pycircstat.corrcc(data1, data2, ci=0.95), exp)
+    assert pycircstat.corrcc(data1, data2, ci=0.95) == exp
 
 
 def test_corrcc_ci_2d():

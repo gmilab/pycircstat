@@ -3,7 +3,6 @@ Statistical tests
 """
 from __future__ import absolute_import, division
 import warnings
-from nose.tools import nottest
 
 import numpy as np
 from scipy import stats
@@ -340,7 +339,7 @@ def symtest(alpha, axis=None):
     return pval, T
 
 
-@nottest
+
 def watson_williams(*args, **kwargs):
     """
     Parametric Watson-Williams multi-sample test for equal means. Can be
@@ -548,7 +547,7 @@ def _sample_cdf(alpha, resolution=100., axis=None):
     return bins[:-1], cdf
 
 
-@nottest
+
 def cmtest(*args, **kwargs):
     """
     Non parametric multi-sample test for equal medians. Similar to a
@@ -588,7 +587,7 @@ def cmtest(*args, **kwargs):
     return pval, P
 
 
-@nottest
+
 def mtest(alpha, dir, xi=0.05, w=None, d=None, axis=None):
     """
     One-Sample test for the mean angle.
@@ -625,7 +624,7 @@ def mtest(alpha, dir, xi=0.05, w=None, d=None, axis=None):
     return h, mu, ci
 
 
-@nottest
+
 def medtest(alpha, md, axis=None):
     """
     Tests for difference in the median against a fixed value.
@@ -658,7 +657,7 @@ def medtest(alpha, md, axis=None):
     return stats.binom.cdf(n_min, n, 0.5) + 1 - stats.binom.cdf(n_max - 1, n, 0.5)
 
 
-@nottest
+
 def hktest(alpha, idp, idq, inter=True, fn=None):
     if fn is None:
         fn = ['A', 'B']
