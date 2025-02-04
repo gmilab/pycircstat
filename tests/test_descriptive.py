@@ -2,6 +2,7 @@ from __future__ import absolute_import
 
 import numpy as np
 
+import pytest
 from numpy.testing import assert_allclose
 
 import pycircstat
@@ -57,34 +58,34 @@ def test_axis_2arg():
                 assert ret.shape == data.shape[:a] + data.shape[a + 1:]
 
 
-@raises(ValueError)
 def test_bootstrap():
     """Tests whether wrong scale raises ValueError"""
-    @pycircstat.descriptive.bootstrap(1, 'wrongscale')
-    def testfunc(alpha, axis=None, ci=None, bootstrap_iter=100):
-        return np.array(0)
+    with pytest.raises(ValueError):
+        @pycircstat.descriptive.bootstrap(1, 'wrongscale')
+        def testfunc(alpha, axis=None, ci=None, bootstrap_iter=100):
+            return np.array(0)
 
-    testfunc(np.array([0, 1, 2.3, 3]), ci=.8)
+        testfunc(np.array([0, 1, 2.3, 3]), ci=.8)
 
 
-@raises(ValueError)
 def test_bootstrap():
     """Tests whether missing bootstrap_iter raises ValueError"""
-    @pycircstat.descriptive.bootstrap(1, 'circular')
-    def testfunc(alpha, axis=None, ci=None):
-        return np.array(0)
+    with pytest.raises(ValueError):
+        @pycircstat.descriptive.bootstrap(1, 'circular')
+        def testfunc(alpha, axis=None, ci=None):
+            return np.array(0)
 
-    testfunc(np.array([0, 1, 2.3, 3]), ci=.8)
+        testfunc(np.array([0, 1, 2.3, 3]), ci=.8)
 
 
-@raises(ValueError)
 def test_bootstrap():
     """Tests whether missing axis raises ValueError"""
-    @pycircstat.descriptive.bootstrap(1, 'circular')
-    def testfunc(alpha, bootstrap_iter=100, ci=None):
-        return np.array(0)
+    with pytest.raises(ValueError):
+        @pycircstat.descriptive.bootstrap(1, 'circular')
+        def testfunc(alpha, bootstrap_iter=100, ci=None):
+            return np.array(0)
 
-    testfunc(np.array([0, 1, 2.3, 3]), ci=.8)
+        testfunc(np.array([0, 1, 2.3, 3]), ci=.8)
 
 
 def test_var():
@@ -267,12 +268,9 @@ def test_mean_ci_2d_warning():
                     [1.07677, 1.49836],
                     [2.96969, 1.51748],
                     ])
-    muplus = np.array([np.NaN, 2.7003])
-    muminus = np.array([np.NaN, 0.89931])
-    mu = np.array([1.6537, 1.7998])
 
-    assert_raises(UserWarning, pycircstat.mean, data, ci=0.95, axis=0)
-
+    with pytest.warns(UserWarning):
+        pycircstat.mean(data, ci=0.95, axis=0)
 
 def test_mean_ci_2d():
     data = np.array([

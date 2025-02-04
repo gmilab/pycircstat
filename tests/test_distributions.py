@@ -2,6 +2,7 @@ from __future__ import absolute_import
 
 import numpy as np
 
+import pytest
 from numpy.testing import assert_allclose
 
 import pycircstat as circ
@@ -21,14 +22,14 @@ def test_kappa_basic():
     assert_allclose(kappa, 1.6221, rtol=1e-4)
 
 
-@raises(Exception)
 def test_kappa_assert():
     """circ.kappa:  test basic functionality of circ.distributions.kappa"""
-    kappa = circ.distributions.kappa(
-        test_data_2d,
-        np.ones_like(test_data_2d)[
-            :,
-            :-1])
+    with pytest.raises(Exception):
+        kappa = circ.distributions.kappa(
+            test_data_2d,
+            np.ones_like(test_data_2d)[
+                :,
+                :-1])
 
 
 def test_kappa_axis0():
