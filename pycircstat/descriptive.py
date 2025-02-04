@@ -33,40 +33,13 @@ class bootstrap:
         self.no_boostrap = no_bootstrap
         self.scale = scale
 
-    def _get_var(self, f, what, default, args, kwargs, remove=False):
-        varnames = f.__code__.co_varnames
-
-        if what in varnames:
-            what_idx = varnames.index(what)
-        else:
-            raise ValueError('Function %s does not have variable %s.' %
-                             (f.__name__, what))
-
-        if len(args) >= what_idx + 1:
-            val = args[what_idx]
-            if remove:
-                args[what_idx] = default
-        # this part is actually never called since decocator seems to convert everything
-        # positional arguments. Therefore, I just commented, but did not remove this piece
-        # of code since it might be called with keyword arguments under certain circumstances.
-        # elif what in kwargs:
-        #     if remove:
-        #         val = kwargs.pop(what, default)
-        #     else:
-        #         val = kwargs[what]
-        else:
-            val = default
-
-        return val
-
     def __call__(self, f):
 
         def wrapper(f, *args, **kwargs):
             args = list(args)
-            ci = self._get_var(f, 'ci', None, args, kwargs, remove=True)
-            bootstrap_iter = self._get_var(f, 'bootstrap_iter', None,
-                                           args, kwargs, remove=True)
-            axis = self._get_var(f, 'axis', None, args, kwargs)
+            ci = kwargs.pop('ci', None)
+            bootstrap_iter = kwargs.pop('bootstrap_iter', None)
+            axis = kwargs.get('axis', None)
 
             alpha = args[:self.no_boostrap]
             args0 = args[self.no_boostrap:]
